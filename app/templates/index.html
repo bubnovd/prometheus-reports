@@ -1,0 +1,34 @@
+<html>
+<body>  
+<h2>Отчет о недоступности устройств</h2>
+  <form action="{{ url_for('main') }}" method=post>
+    <table>
+      <tr><td>Тип оборудования:</td>
+      <td><select name=device_type>
+            <option value='apt-icmp'>APT</option>
+          </select>
+      </td>
+      </tr>
+      <tr><td>Начало периода:</td>
+      <td><input type=date name=start></td>
+      </tr>
+      <tr><td>Конец периода:</td>
+      <td><input type=date name=end></td>
+      </tr>
+      <td><input type=submit value='Вывести отчет'></td>
+    </table>
+  </form>
+
+  {% if error %}
+      <p class=error><strong>Error:</strong> {{ error }}
+  {% else %} Отчет по доступности {{ device_type }} за {{ start }} - {{end }}:
+  {% endif %}
+<br>
+  {% if result %}
+    <a href='{{ url_for("download") }}'>Скачать отчет в XLS</a>
+      {% for device in result %}
+         <p> {{ device }} 
+      {% endfor %}
+  {% endif %}
+</body>
+</html>

@@ -1,0 +1,12 @@
+---
+    promapi: http://10.200.254.81:9090/api/v1/query_range
+#    promquery: avg_over_time(probe_success{job="apt-icmp", instance=~"10.64.(99|101).21"}[10m]) < 0.6
+    promquery: avg_over_time(probe_success{job="apt-icmp"}[10m]) < 0.6
+#    promquery: avg_over_time(probe_success{job="apt-icmp", instance="10.64.129.21"}[10m]) < 0.6
+    step: 60
+    promauth: False # set to false if you do not use nginx basic auth
+    promlogin: your_basic_auth_login
+    prompass: your_basic_auth_pass
+    startday: 2020-03-13
+    endday: 2020-03-30
+    outputfile: result.csv
